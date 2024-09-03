@@ -1,4 +1,4 @@
-from .database import get_db_connection
+from database import get_db_connection
 
 
 def get_all_students():
@@ -24,6 +24,17 @@ def create_student(name, age):
     with conn.cursor() as cur:
         cur.execute(
             "INSERT INTO students (name, age) VALUES (%s, %s) RETURNING *;", (name, age))
+        new_student = cur.fetchone()
+    conn.commit()
+    conn.close()
+    return new_student
+
+
+def register(name, email, phone, dob, address, gender):
+    conn = get_db_connection()
+    with conn.cursor() as cur:
+        cur.execute(
+            "INSERT INTO students (name, email, phone, dob, address, gender) VALUES (%s,%s, %s, %s, %s, %s) RETURNING *;", (name, email, phone, dob, address, gender))
         new_student = cur.fetchone()
     conn.commit()
     conn.close()
