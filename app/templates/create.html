@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Create Student</h2>
+<form method="post" action="/students/create/">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" name="age" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
